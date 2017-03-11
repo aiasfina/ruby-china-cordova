@@ -4,3 +4,6 @@
 [Pp]lugins/wp8.json
 [Pp]lugins/remote_ios.json
 /[Pp]latforms/
+/node_modules
+/plugins
+/www/scripts/bundle.js

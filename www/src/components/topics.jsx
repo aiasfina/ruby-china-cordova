@@ -1,9 +1,10 @@
 import m from 'mithril'
+import {button} from 'polythene'
 
 export default {
-  oncreate: (vnode) => {
+  oncreate: vnode => {
   },
   view: () => {
-    return
+    return m(button, {label: 'He'})
   }
 }

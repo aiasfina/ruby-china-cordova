@@ -1,0 +1,4 @@
+[submodule "polythene"]
+	path = polythene
+	url = https://github.com/ArthurClemens/polythene.git
+	branch = rewrite

@@ -48,6 +48,7 @@ const TileContent = {
         <p className="app-topic_meta">
           <span>
             <b className="app-topic_login">{topic.user.login}</b>
+            <em className="app-topic_node">{topic.node_name}</em>
             {TileContent.renderCreatedOrReplied(topic)}
           </span>
           <span>{topic.replies_count + ' / ' + topic.hits}</span>
@@ -57,7 +58,6 @@ const TileContent = {
   }
 }
 
-// component
 const Tile = {
   oninit: vnode => {
     vnode.state.onclick = e => {
@@ -80,9 +80,16 @@ const Tile = {
 
 const List = {
   oninit: vnode => {
+    vnode.state.page = 1
     vnode.state.list = []
-    loadTopicList().then(resp => {
-      vnode.state.list = resp.topics
+    List.loadList(vnode.state)
+  },
+  loadList: (state) => {
+    loadTopicList(state.page).then(resp => {
+      resp.topics.forEach(v => {
+        state.list.push(v)
+      })
+      state.page += 1
     })
   },
   generateTiles: (list) => {

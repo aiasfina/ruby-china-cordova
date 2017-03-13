@@ -1,6 +1,7 @@
 import '../../css/layout.scss'
 
 import m from 'mithril'
+import move from 'move-js'
 
 import {iconButton, tabs, toolbar} from 'polythene'
 import iconMenu from 'mmsvg/google/msvg/navigation/menu'
@@ -36,7 +37,7 @@ const Toolbar = {
   oninit: (vnode) => {
     vnode.state.btns = [
       iBtn(iconMenu),
-      m('span.flex', 'Toolbar'),
+      m('span.flex', 'Ruby China'),
       iBtn(iconSearch),
       iBtn(iconMore)
     ]
@@ -52,7 +53,42 @@ const Toolbar = {
   }
 }
 
+function listenScroll(vnode) {
+  var
+    dom = vnode.dom,
+    isShown = true,
+    lastScrollTop = 0
+
+  window.onscroll = (e) => {
+    var st = window.pageYOffset || document.documentElement.scrollTop
+    if (st - lastScrollTop > 60 && isShown) {
+      move(dom)
+        .duration(200)
+        .translate(0, -dom.offsetHeight)
+        .end()
+      isShown = false
+    } else if (lastScrollTop - st > 60 && !isShown) {
+      move(dom)
+        .duration(200)
+        .translate(0, 0)
+        .end()
+      isShown = true
+    }
+
+    if (timer) { clearTimeout(timer) }
+    var timer = setTimeout(() => {
+      lastScrollTop = st
+    }, 200)
+  }
+}
+
 const Tab = {
+  oncreate: vnode => {
+    listenScroll(vnode)
+  },
+  onremove: vnode => {
+    window.onscroll = null;
+  },
   oninit: (vnode) => {
     vnode.state.btns = [
       {
@@ -65,7 +101,8 @@ const Tab = {
   },
   view: (vnode) => {
     return(
-      m(tabs,{
+      m(tabs, {
+        menu: true,
         class: 'app-toolbar_tabs',
         buttons: vnode.state.btns,
         autofit: true

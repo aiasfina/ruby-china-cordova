@@ -2,5 +2,15 @@
   width: 100%;
   position: fixed;
   z-index: 10000;
+}
+
+.app-toolbar {
+  position: relative;
+  z-index: 10002;
+}
+
+.app-toolbar_tabs {
+  position: relative;
+  z-index: 10001;
   background-color: #00bcd4;
 }

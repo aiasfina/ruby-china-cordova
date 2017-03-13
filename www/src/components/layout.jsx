@@ -1,6 +1,6 @@
-import m from 'mithril'
+import '../../css/layout.scss'
 
-import '../styles/layout'
+import m from 'mithril'
 
 import {iconButton, tabs, toolbar} from 'polythene'
 import iconMenu from 'mmsvg/google/msvg/navigation/menu'
@@ -9,17 +9,17 @@ import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 
 // style
 iconButton.theme('.pe-icon-button', {
-  color_light: 'white'
+  color_light: '#fff'
 })
 
 toolbar.theme('.pe-toolbar', {
-  color_light_text: 'white',
+  color_light_text: '#fff',
   color_light_background: '#00bcd4'
 })
 
 tabs.theme('.pe-tabs', {
-  color_light: '#b0bec5',
-  color_light_selected: '#00bcd4',
+  color_light: '#b2ebf2',
+  color_light_selected: '#fff',
   color_light_tab_indicator: '#FFFF8D'
 })
 
@@ -74,13 +74,29 @@ const Tab = {
   }
 }
 
+const HeadPanel = {
+  setHeadPanelHeight: vnode => {
+    var height = vnode.dom.offsetHeight
+    vnode.dom.parentNode.style.height = height + 'px'
+  },
+  view: vnode => {
+    return(
+      <div className="app-headpanel-wrapper">
+        <div className="app-headpanel" oncreate={HeadPanel.setHeadPanelHeight}>
+          {m(Toolbar)}
+          {m(Tab)}
+        </div>
+      </div>
+    )
+  }
+}
+
 export default {
   view: vnode => {
     return(
-      <main>
-        {m(Toolbar)}
-        {m(Tab)}
-        <div>
+      <main className="app-main">
+        {m(HeadPanel)}
+        <div className="app-content">
           {vnode.children}
         </div>
       </main>

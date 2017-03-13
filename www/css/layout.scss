@@ -1,15 +1,6 @@
-// .pe-toolbar {
-//   &.app-toolbar {
-//     background-color: #00BCD4;
-//     color: #fff;
-
-//     .pe-icon {
-//       color: #fff;
-//     }
-//   }
-// }
-
-// .app-toolbar_tabs {
-//   background-color: #00BCD4;
-//   color: #fff;
-// }
+.app-headpanel {
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  background-color: #00bcd4;
+}

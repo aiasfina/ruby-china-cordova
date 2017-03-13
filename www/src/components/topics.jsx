@@ -1,7 +1,7 @@
 import '../../css/topics.scss'
 
 import m from 'mithril'
-import timeago from 'timeago.js'
+import timeago from '../timeago.js'
 import {list, listTile, fab, icon} from 'polythene'
 import {loadTopicList} from '../controllers/topics'
 
@@ -21,7 +21,24 @@ const Avatar = {
 
 const TileContent = {
   renderTimeago: vnode => {
-    new timeago().render(vnode.dom)
+    timeago.render(vnode.dom, 'zh_CN')
+  },
+  renderCreatedOrReplied: topic => {
+    if (topic.replied_at) {
+      return(
+        <span>
+          <time oncreate={TileContent.renderTimeago} datetime={topic.replied_at}></time>
+          回复
+        </span>
+      )
+    } else {
+      return(
+        <span>
+          <time oncreate={TileContent.renderTimeago} datetime={topic.created_at}></time>
+          发表
+        </span>
+      )
+    }
   },
   view: vnode => {
     const topic = vnode.attrs.topic
@@ -29,8 +46,11 @@ const TileContent = {
       <div className="app-topic_content">
         <p className="app-topic_title">{topic.title}</p>
         <p className="app-topic_meta">
-          <b>{topic.user.login}</b>
-          <time oncreate={TileContent.renderTimeago} datetime={topic.replied_at}></time>
+          <span>
+            <b className="app-topic_login">{topic.user.login}</b>
+            {TileContent.renderCreatedOrReplied(topic)}
+          </span>
+          <span>{topic.replies_count + ' / ' + topic.hits}</span>
         </p>
       </div>
     )

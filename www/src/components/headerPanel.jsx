@@ -46,7 +46,7 @@ const view = vnode => {
 
   return(
     <div className="pe-header_panel--wrapper">
-      <div className="pe-header_panel">
+      <div className="pe-header_panel" oncreate={setContentHeight}>
         {attrs.toolbar}
         <div oncreate={listenScroll}>
           {vnode.children}
@@ -57,5 +57,6 @@ const view = vnode => {
 }
 
 export default {
+  onremove,
   view
 }

@@ -1,12 +1,13 @@
 import '../../css/layout.scss'
 
 import m from 'mithril'
-import move from 'move-js'
 
 import {iconButton, tabs, toolbar} from 'polythene'
 import iconMenu from 'mmsvg/google/msvg/navigation/menu'
 import iconSearch from 'mmsvg/google/msvg/action/search'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
+
+import HeaderPanel from './headerPanel.jsx'
 
 // style
 iconButton.theme('.pe-icon-button', {
@@ -53,42 +54,7 @@ const Toolbar = {
   }
 }
 
-function listenScroll(vnode) {
-  var
-    dom = vnode.dom,
-    isShown = true,
-    lastScrollTop = 0
-
-  window.onscroll = (e) => {
-    var st = window.pageYOffset || document.documentElement.scrollTop
-    if (st - lastScrollTop > 60 && isShown) {
-      move(dom)
-        .duration(200)
-        .translate(0, -dom.offsetHeight)
-        .end()
-      isShown = false
-    } else if (lastScrollTop - st > 60 && !isShown) {
-      move(dom)
-        .duration(200)
-        .translate(0, 0)
-        .end()
-      isShown = true
-    }
-
-    if (timer) { clearTimeout(timer) }
-    var timer = setTimeout(() => {
-      lastScrollTop = st
-    }, 200)
-  }
-}
-
 const Tab = {
-  oncreate: vnode => {
-    listenScroll(vnode)
-  },
-  onremove: vnode => {
-    window.onscroll = null;
-  },
   oninit: (vnode) => {
     vnode.state.btns = [
       {
@@ -119,28 +85,11 @@ const Tab = {
   }
 }
 
-const HeadPanel = {
-  setHeadPanelHeight: vnode => {
-    var height = vnode.dom.offsetHeight
-    vnode.dom.parentNode.style.height = height + 'px'
-  },
-  view: vnode => {
-    return(
-      <div className="app-headpanel-wrapper">
-        <div className="app-headpanel" oncreate={HeadPanel.setHeadPanelHeight}>
-          {m(Toolbar)}
-          {m(Tab)}
-        </div>
-      </div>
-    )
-  }
-}
-
 export default {
   view: vnode => {
     return(
       <main className="app-main">
-        {m(HeadPanel)}
+        {m(HeaderPanel, {toolbar: m(Toolbar)}, m(Tab))}
         <div className="app-content">
           {vnode.children}
         </div>

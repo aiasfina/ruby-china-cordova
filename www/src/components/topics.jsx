@@ -79,19 +79,6 @@ const Tile = {
 }
 
 const List = {
-  oninit: vnode => {
-    vnode.state.page = 1
-    vnode.state.list = []
-    List.loadList(vnode.state)
-  },
-  loadList: (state) => {
-    loadTopicList(state.page).then(resp => {
-      resp.topics.forEach(v => {
-        state.list.push(v)
-      })
-      state.page += 1
-    })
-  },
   generateTiles: (list) => {
     return list.map(v => {
       return m(Tile, {topic: v})
@@ -100,14 +87,10 @@ const List = {
   view: vnode => {
     return(
       m(list, {
-        tiles: List.generateTiles(vnode.state.list)
+        tiles: List.generateTiles(vnode.attrs.list)
       })
     )
   }
 }
 
-export default {
-  view: () => {
-    return m(List)
-  }
-}
+export default List

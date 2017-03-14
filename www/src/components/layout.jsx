@@ -92,10 +92,18 @@ const Tab = {
   oninit: (vnode) => {
     vnode.state.btns = [
       {
-        label: '主题'
+        label: '主题',
+        url: {
+          href: '/topics',
+          oncreate: m.route.link
+        }
       },
       {
-        label: '招聘'
+        label: '招聘',
+        url: {
+          href: '/jobs',
+          oncreate: m.route.link
+        }
       }
     ]
   },

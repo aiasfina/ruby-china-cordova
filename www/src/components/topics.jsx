@@ -59,10 +59,6 @@ const TileContent = {
 }
 
 const Tile = {
-  oninit: vnode => {
-    vnode.state.onclick = e => {
-    }
-  },
   view: vnode => {
     const topic = vnode.attrs.topic
     return(
@@ -70,8 +66,9 @@ const Tile = {
         front: m(Avatar, {user: topic.user}),
         content: m(TileContent, {topic: topic}),
         ink: true,
-        events: {
-          onclick: vnode.state.onclick
+        url: {
+          href: '/topics/' + topic.id,
+          oncreate: m.route.link
         }
       })
     )

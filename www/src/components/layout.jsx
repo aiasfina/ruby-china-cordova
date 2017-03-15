@@ -10,16 +10,16 @@ import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import HeaderPanel from './headerPanel.jsx'
 
 // style
-iconButton.theme('.pe-icon-button', {
+iconButton.theme('.app-toolbar-ibtn', {
   color_light: '#fff'
 })
 
-toolbar.theme('.pe-toolbar', {
+toolbar.theme('.app-toolbar', {
   color_light_text: '#fff',
   color_light_background: '#00bcd4'
 })
 
-tabs.theme('.pe-tabs', {
+tabs.theme('.app-toolbar-tabs', {
   color_light: '#b2ebf2',
   color_light_selected: '#fff',
   color_light_tab_indicator: '#FFFF8D'
@@ -28,6 +28,7 @@ tabs.theme('.pe-tabs', {
 // component
 const iBtn = function(msvg) {
   return m(iconButton, {
+    class: 'app-toolbar-ibtn',
     icon: {
       msvg: msvg
     }
@@ -77,7 +78,7 @@ const Tab = {
     return(
       m(tabs, {
         menu: true,
-        class: 'app-toolbar_tabs',
+        class: 'app-toolbar-tabs',
         buttons: vnode.state.btns,
         autofit: true
       })

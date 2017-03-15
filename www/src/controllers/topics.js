@@ -22,4 +22,12 @@ const loadJobList = page => {
   return loadNodeList(page, 25)
 }
 
-export {loadTopicList, loadNodeList, loadJobList}
+const loadTopic = id => {
+  return m.request({
+    method: 'GET',
+    url: 'https://ruby-china.org/api/v3/topics/' + id + '.json',
+    data: {id: id}
+  })
+}
+
+export {loadTopicList, loadNodeList, loadJobList, loadTopic}

@@ -80,7 +80,14 @@ const Tab = {
         menu: true,
         class: 'app-toolbar-tabs',
         buttons: vnode.state.btns,
-        autofit: true
+        autofit: true,
+        selectedTab: (function() {
+          switch(m.route.get()) {
+            case '/topics': return 0
+            case '/jobs': return 1
+            default: 0
+          }
+        }())
       })
     )
   }

@@ -4,6 +4,8 @@ import m from 'mithril'
 import move from 'move-js'
 
 function listenScroll(vnode) {
+  if (!vnode.attrs.fixed) { return }
+
   var
     dom = vnode.dom,
     isShown = true,
@@ -43,12 +45,13 @@ const onremove = vnode => {
 
 const view = vnode => {
   const attrs = vnode.attrs
+  const fixed = !!attrs.fixed
 
   return(
     <div className="pe-header_panel--wrapper">
-      <div className="pe-header_panel" oncreate={setContentHeight}>
+      <div className={'pe-header_panel' + (fixed ? ' fixed' : '')} oncreate={setContentHeight}>
         {attrs.toolbar}
-        <div oncreate={listenScroll}>
+        <div oncreate={listenScroll} fixed={fixed}>
           {vnode.children}
         </div>
       </div>

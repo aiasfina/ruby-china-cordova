@@ -97,7 +97,7 @@ export default {
   view: vnode => {
     return(
       <main className="app-main">
-        {m(HeaderPanel, {toolbar: m(Toolbar)}, m(Tab))}
+        {m(HeaderPanel, {toolbar: m(Toolbar), fixed: true}, m(Tab))}
         <div className="app-content">
           {vnode.children}
         </div>

@@ -1,5 +1,7 @@
 .pe-header_panel {
   width: 100%;
-  position: fixed;
-  z-index: 10000;
+  &.fixed {
+    position: fixed;
+    z-index: 999;
+  }
 }

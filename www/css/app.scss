@@ -6,3 +6,21 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+.flex-container {
+  height: 100%;
+  display: flex;
+  &.column {
+    flex-direction: column;
+  }
+  &.row {
+    flex-direction: row;
+  }
+
+  .flext-content {
+    flex: 1;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}

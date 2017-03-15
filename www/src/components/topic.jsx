@@ -32,7 +32,7 @@ const Toolbar = {
   oninit: vnode => {
     vnode.state.btns = [
       Toolbar.iBtn(iconArrowLeft, btnToBack),
-      m('span.flex', vnode.attrs.title),
+      m('span.flex', vnode.attrs.topic.title),
       Toolbar.iBtn(iconMore)
     ]
   },
@@ -75,14 +75,15 @@ const oninit = vnode => {
   vnode.state.meta = {}
   vnode.state.topic = {}
 
-  vnode.state.toolbar = m(Toolbar, {title: ''})
+  vnode.state.toolbar = m(Toolbar, {topic: vnode.state.topic})
 
   loadTopic(vnode.attrs.id)
   .then(resp => {
     vnode.state.topic = resp.topic
     vnode.state.meta = resp.meta
-    // TODO: 由于 redraw 不能更新toolbar中的内容，需要手动更新
-    vnode.state.toolbar.state.btns[1].dom.innerHTML = resp.topic.title
+
+    // 由于polythene控件不能redraw，需要手动更新
+    vnode.state.toolbar.state.btns[1].dom.innerHTML = vnode.state.topic.title
   })
 }
 
@@ -91,18 +92,20 @@ const view = vnode => {
   const meta = vnode.state.meta
 
   return(
-    <div className="app-topic_detail">
+    <div className="app-topic_detail--wrapper">
       {m(HeaderPanel, {toolbar: vnode.state.toolbar})}
-      <div className="app-topic_detail-screen">
-        <div className="app-topic_detail-title">
-          {topic.title}
+      <div className="app-topic_detail flex-container column">
+        <div className="app-topic_detail-screen flext-content">
+          <div className="app-topic_detail-title">
+            {topic.title}
+          </div>
+          <div className="app-topic_detail-content">
+            {m.trust(topic.body_html)}
+          </div>
         </div>
-        <div className="app-topic_detail-content">
-          {m.trust(topic.body_html)}
+        <div className="app-topic_detail-menu">
+          {m(Menu, {meta: meta})}
         </div>
-      </div>
-      <div className="app-topic_detail-menu">
-        {m(Menu, {meta: meta})}
       </div>
     </div>
   )

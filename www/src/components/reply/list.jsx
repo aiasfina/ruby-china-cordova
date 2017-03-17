@@ -55,7 +55,7 @@ const view = vnode => {
 
   return(
     <div className="app-topic_replies">
-      {m(HeaderPanel, {toolbar: m(Toolbar, {topicTitle: topicTitle})})}
+      {m(HeaderPanel, {toolbar: m(Toolbar, {topicTitle: topicTitle}), fixed: true})}
       {m(list, {
         tiles: vnode.state.replies.map(reply => { return m(ReplyItem, {reply: reply}) })
       })}

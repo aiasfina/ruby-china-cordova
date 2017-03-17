@@ -1,6 +1,6 @@
 import m from 'mithril'
 import {listTile, icon} from 'polythene'
-import timeago from '../../timeago.js'
+import timeago from '../share/timeago.js'
 
 const Avatar = {
   view: vnode => {

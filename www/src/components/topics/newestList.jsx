@@ -1,6 +1,6 @@
 import m from 'mithril'
-import {loadTopicList} from '../controllers/topics'
-import List from './topics.jsx'
+import {loadTopicList} from '../../controllers/topics'
+import List from './list.jsx'
 
 var page = 1
 

@@ -1,4 +1,4 @@
-import '../../css/topic.scss'
+import '../../../css/topic.scss'
 
 import m from 'mithril'
 import {toolbar, iconButton} from 'polythene'
@@ -8,8 +8,8 @@ import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import iconHeart from 'mmsvg/templarian/msvg/heart'
 import iconBookmark from 'mmsvg/templarian/msvg/bookmark'
 import iconComment from 'mmsvg/templarian/msvg/comment-text-outline'
-import {loadTopic} from '../controllers/topics'
-import HeaderPanel from './headerPanel.jsx'
+import {loadTopic} from '../../controllers/topics'
+import HeaderPanel from '../share/headerPanel.jsx'
 
 const btnToBack = () => {
   window.history.back()

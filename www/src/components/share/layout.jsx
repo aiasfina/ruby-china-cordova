@@ -1,4 +1,4 @@
-import '../../css/layout.scss'
+import '../../../css/layout.scss'
 
 import m from 'mithril'
 

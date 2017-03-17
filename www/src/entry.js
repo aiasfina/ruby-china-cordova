@@ -2,10 +2,10 @@
 
 import m from 'mithril'
 
-import Layout from './components/layout.jsx'
-import NewestTopics from './components/newestTopics.jsx'
-import JobTopics from './components/jobTopics.jsx'
-import TopicDetail from './components/topic.jsx'
+import Layout from './components/share/layout.jsx'
+import NewestList from './components/topics/newestList.jsx'
+import JobList from './components/topics/jobList.jsx'
+import TopicDetail from './components/topic/topic.jsx'
 import ReplyList from './components/reply/list.jsx'
 
 document.addEventListener( 'deviceready', init, false)
@@ -14,12 +14,12 @@ function init() {
   m.route(document.body, '/topics', {
     '/topics': {
       render: () => {
-        return m(Layout, m(NewestTopics))
+        return m(Layout, m(NewestList))
       }
     },
     '/jobs': {
       render: () => {
-        return m(Layout, m(JobTopics))
+        return m(Layout, m(JobList))
       }
     },
     '/topics/:id': {

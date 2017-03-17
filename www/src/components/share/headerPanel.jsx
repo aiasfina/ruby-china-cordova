@@ -1,4 +1,4 @@
-import '../../css/header_panel.scss'
+import '../../../css/header_panel.scss'
 
 import m from 'mithril'
 import move from 'move-js'

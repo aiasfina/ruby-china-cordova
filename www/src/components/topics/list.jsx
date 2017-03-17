@@ -1,9 +1,9 @@
-import '../../css/topics.scss'
+import '../../../css/topics.scss'
 
 import m from 'mithril'
-import timeago from '../timeago.js'
+import timeago from '../share/timeago.js'
 import {list, listTile, fab, icon} from 'polythene'
-import {loadTopicList} from '../controllers/topics'
+import {loadTopicList} from '../../controllers/topics'
 
 // component
 const Avatar = {

@@ -5,7 +5,7 @@ import {list, tab, toolbar, iconButton, dialog} from 'polythene'
 import iconArrowLeft from 'mmsvg/templarian/msvg/arrow-left'
 import ReplyItem from './item.jsx'
 import {loadList} from '../../controllers/replies'
-import HeaderPanel from '../headerPanel.jsx'
+import HeaderPanel from '../share/headerPanel.jsx'
 
 const btnToBack = () => {
   window.history.back()

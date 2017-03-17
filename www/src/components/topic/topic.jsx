@@ -3,13 +3,10 @@ import '../../../css/topic.scss'
 import m from 'mithril'
 import {toolbar, iconButton, icon} from 'polythene'
 import iconArrowLeft from 'mmsvg/templarian/msvg/arrow-left'
-import iconEye from 'mmsvg/templarian/msvg/eye'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
-import iconHeart from 'mmsvg/templarian/msvg/heart'
-import iconBookmark from 'mmsvg/templarian/msvg/bookmark'
-import iconComment from 'mmsvg/templarian/msvg/comment-text-outline'
 import {loadTopic} from '../../controllers/topics'
 import HeaderPanel from '../share/headerPanel.jsx'
+import Menu from './menu.jsx'
 
 const btnToBack = () => {
   window.history.back()
@@ -41,35 +38,6 @@ const Toolbar = {
         class: 'app-toolbar',
         content: vnode.state.btns
       })
-    )
-  }
-}
-
-const showReplies = (topic) => {
-  m.route.set('/topics/' + topic.id + '/replies', {title: topic.title})
-}
-
-const Menu = {
-  iBtn: (msvg) => {
-    return m(iconButton, {
-      icon: {
-        msvg: msvg
-      }
-    })
-  },
-  oninit: vnode => {
-  },
-  view: vnode => {
-    const meta = vnode.attrs.meta
-    const topic = vnode.attrs.topic
-
-    return(
-      <ul className="app-topic_detail-menu">
-        <li className={"app-topic_detail-menu-bookmark" + (meta.favorited ? ' active' : '')}>{Menu.iBtn(iconBookmark)}</li>
-        <li className={"app-topic_detail-menu-heart" + (meta.liked ? ' active' : '')}>{Menu.iBtn(iconHeart)}</li>
-        <li className="app-topic_detail-menu-eye">{Menu.iBtn(iconEye)}</li>
-        <li className="app-topic_detail-menu-comment" onclick={() => {showReplies(topic)}}>{Menu.iBtn(iconComment)}</li>
-      </ul>
     )
   }
 }

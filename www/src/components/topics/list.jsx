@@ -12,7 +12,7 @@ const Avatar = {
     return(
       m(icon, {
         type: 'medium',
-        class: 'app-topic_avatar avatar--circle',
+        class: 'app-topics-avatar avatar--circle',
         src: user.avatar_url
       })
     )
@@ -40,12 +40,12 @@ const TileContent = {
   view: vnode => {
     const topic = vnode.attrs.topic
     return(
-      <div className="app-topic_content">
-        <p className="app-topic_title">{topic.title}</p>
-        <p className="app-topic_meta">
+      <div className="app-topics-content">
+        <p className="app-topics-title">{topic.title}</p>
+        <p className="app-topics-meta">
           <span>
-            <b className="app-topic_login">{topic.user.login}</b>
-            <em className="app-topic_node">{topic.node_name}</em>
+            <b className="app-topics-login">{topic.user.login}</b>
+            <em className="app-topics-node">{topic.node_name}</em>
             {TileContent.renderCreatedOrReplied(topic)}
           </span>
           <span>{topic.replies_count + ' / ' + topic.hits}</span>
@@ -81,6 +81,7 @@ const List = {
   view: vnode => {
     return(
       m(list, {
+        class: 'app-topics',
         tiles: List.generateTiles(vnode.attrs.list)
       })
     )

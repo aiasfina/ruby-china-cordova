@@ -1,0 +1,20 @@
+.app-topic_replies {
+  height: 100%;
+
+  .app-toolbar {
+    span.flex {
+      margin-left: 0;
+      font-size: 12px;
+    }
+  }
+
+  .app-topic_reply-meta {
+    margin-bottom: 20px;
+    span {
+      margin-right: 15px;
+    }
+    time {
+      color: #999;
+    }
+  }
+}

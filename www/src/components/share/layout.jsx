@@ -60,16 +60,18 @@ const Tab = {
     vnode.state.btns = [
       {
         label: '主题',
-        url: {
-          href: '/topics',
-          oncreate: m.route.link
+        events: {
+          onclick: () => {
+            m.route.set('/topics', null, {replace: true})
+          }
         }
       },
       {
         label: '招聘',
-        url: {
-          href: '/jobs',
-          oncreate: m.route.link
+        events: {
+          onclick: () => {
+            m.route.set('/jobs', null, {replace: true})
+          }
         }
       }
     ]

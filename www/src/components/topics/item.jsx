@@ -61,7 +61,11 @@ const view = vnode => {
       class: 'app-topics-item',
       ink: true,
       front: m(Avatar, {user: user}),
-      content: m(TileContent, {topic: topic})
+      content: m(TileContent, {topic: topic}),
+      url: {
+        href: '/topics/' + topic.id,
+        oncreate: m.route.link
+      }
     })
   )
 }

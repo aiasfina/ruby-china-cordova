@@ -24,7 +24,7 @@ const Content = {
           <span><b>{reply.user.login}</b></span>
           <span><time oncreate={timeago} datetime={reply.created_at}></time></span>
         </div>
-        <div className="app-topic_reply-content">{m.trust(reply.body_html)}</div>
+        <div className="app-topic_reply-content content--common">{m.trust(reply.body_html)}</div>
       </div>
     )
   }

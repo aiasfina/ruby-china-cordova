@@ -77,7 +77,7 @@ const view = vnode => {
             <span>{m(icon, {type: 'medium', class: 'app-topic_detail-avatar avatar--circle', src: user.avatar_url})}</span>
             <span><b>{user.login}</b></span>
           </div>
-          <div className="app-topic_detail-content">
+          <div className="app-topic_detail-content content--common">
             {m.trust(topic.body_html)}
           </div>
         </div>

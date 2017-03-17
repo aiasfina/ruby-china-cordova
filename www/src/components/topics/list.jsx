@@ -41,15 +41,15 @@ const TileContent = {
     const topic = vnode.attrs.topic
     return(
       <div className="app-topics-content">
-        <p className="app-topics-title">{topic.title}</p>
-        <p className="app-topics-meta">
+        <div className="app-topics-title">{topic.title}</div>
+        <div className="app-topics-meta">
           <span>
             <b className="app-topics-login">{topic.user.login}</b>
             <em className="app-topics-node">{topic.node_name}</em>
             {TileContent.renderCreatedOrReplied(topic)}
           </span>
           <span>{topic.replies_count + ' / ' + topic.hits}</span>
-        </p>
+        </div>
       </div>
     )
   }

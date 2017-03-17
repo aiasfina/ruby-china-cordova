@@ -12,7 +12,7 @@ const Avatar = {
     return(
       m(icon, {
         type: 'medium',
-        class: 'app-topic_avatar',
+        class: 'app-topic_avatar avatar--circle',
         src: user.avatar_url
       })
     )

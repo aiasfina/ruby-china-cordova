@@ -1,7 +1,7 @@
 import m from 'mithril'
 
 const loadList = data => {
-  data.page = data.page || 1
+  data.offset = data.offset || 0
 
   return m.request({
     method: 'GET',
@@ -10,16 +10,16 @@ const loadList = data => {
   })
 }
 
-const loadTopicList = page => {
-  return loadList({page: page})
+const loadTopicList = offset => {
+  return loadList({offset: offset})
 }
 
-const loadNodeList = (page, node_id) => {
-  return loadList({page: page, node_id: node_id})
+const loadNodeList = (offset, node_id) => {
+  return loadList({offset: offset, node_id: node_id})
 }
 
-const loadJobList = page => {
-  return loadNodeList(page, 25)
+const loadJobList = offset => {
+  return loadNodeList(offset, 25)
 }
 
 const loadTopic = id => {

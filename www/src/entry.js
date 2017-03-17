@@ -3,8 +3,7 @@
 import m from 'mithril'
 
 import Layout from './components/share/layout.jsx'
-import NewestList from './components/topics/newestList.jsx'
-import JobList from './components/topics/jobList.jsx'
+import {NewestTopics, JobTopics} from './components/topics/list.jsx'
 import TopicDetail from './components/topic/topic.jsx'
 import ReplyList from './components/reply/list.jsx'
 
@@ -14,12 +13,12 @@ function init() {
   m.route(document.body, '/topics', {
     '/topics': {
       render: () => {
-        return m(Layout, m(NewestList))
+        return m(Layout, m(NewestTopics, {type: 'newest'}))
       }
     },
     '/jobs': {
       render: () => {
-        return m(Layout, m(JobList))
+        return m(Layout, m(JobTopics, {type: 'job'}))
       }
     },
     '/topics/:id': {

@@ -46,3 +46,10 @@ html, body {
     }
   }
 }
+
+.spinner {
+  text-align: center;
+  .pe-icon {
+    animation: loading-rotate 2s linear infinite
+  }
+}

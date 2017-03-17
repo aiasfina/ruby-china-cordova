@@ -1,10 +1,16 @@
-.app-toolbar {
-  position: relative;
-  z-index: 10002;
-}
+.app-main {
+  height: 100%;
+  .app-toolbar {
+    position: relative;
+    z-index: 10002;
+  }
 
-.app-toolbar-tabs {
-  position: relative;
-  z-index: 10001;
-  background-color: #00bcd4;
+  .app-toolbar-tabs {
+    position: relative;
+    z-index: 10001;
+    background-color: #00bcd4;
+  }
+  .app-content {
+    height: calc(100% - 108px);
+  }
 }

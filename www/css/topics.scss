@@ -1,5 +1,6 @@
 .app-topics {
-  .pe-list-tile {
+  height: 100%;
+  .app-topics-item {
     border-bottom: solid 1px #eee;
   }
   .app-topics-content {
@@ -21,4 +22,10 @@
     margin-bottom: 20px;
     overflow: hidden;
   }
+}
+
+@keyframes loading-rotate {
+  0%   { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
 }

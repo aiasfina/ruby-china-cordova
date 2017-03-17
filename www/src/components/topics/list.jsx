@@ -1,91 +1,110 @@
 import '../../../css/topics.scss'
 
 import m from 'mithril'
-import timeago from '../share/timeago.js'
-import {list, listTile, fab, icon} from 'polythene'
-import {loadTopicList} from '../../controllers/topics'
+import InfiniteList from 'infinite-list'
+import {fab, icon} from 'polythene'
+import {loadTopicList, loadNodeList, loadJobList} from '../../controllers/topics'
+import TopicItem from './item.jsx'
+import Spinner from '../share/spinner.jsx'
 
-// component
-const Avatar = {
-  view: vnode => {
-    const user = vnode.attrs.user
-    return(
-      m(icon, {
-        type: 'medium',
-        class: 'app-topics-avatar avatar--circle',
-        src: user.avatar_url
-      })
-    )
+const vm = {
+  newest: {
+    offset: 0,
+    list: [],
+    loadList: loadTopicList
+  },
+  job: {
+    offset: 0,
+    list: [],
+    loadList: loadJobList
+  },
+  node: {
+    offset: 0,
+    list: [],
+    loadList: loadNodeList
   }
 }
 
-const TileContent = {
-  renderCreatedOrReplied: topic => {
-    if (topic.replied_at) {
-      return(
-        <span>
-          <time oncreate={timeago} datetime={topic.replied_at}></time>
-          回复
-        </span>
-      )
-    } else {
-      return(
-        <span>
-          <time oncreate={timeago} datetime={topic.created_at}></time>
-          发表
-        </span>
-      )
+const loadVM = type => {
+  return vm[type]
+}
+
+const refresh = vm => {
+  vm.offset = 1
+  return vm.loadList(vm.offset)
+  .then(resp => {
+    vm.list = resp.topics
+    vm.offset += resp.topics.length
+  })
+}
+
+const loadMore = vm => {
+  return vm.loadList(vm.offset)
+  .then(resp => {
+    vm.list = vm.list.concat(resp.topics)
+    vm.offset += resp.topics.length
+
+    return resp.topics.length
+  })
+}
+
+const createInfiniteList = (state) => {
+  const
+    loadMore = state.loadMore,
+    refresh = state.refresh,
+    vm = state.vm
+
+  return new InfiniteList({
+    initialPage: {
+      hasMore: true
+    },
+    loadMoreRenderer: (index, domElement) => {
+      m.render(domElement, m(Spinner))
+    },
+    itemRenderer: (index, domElement) => {
+      m.render(domElement, m(TopicItem, {topic: vm.list[index]}))
+    },
+    pageFetcher: (fromIndex, callback) => {
+      loadMore(vm).then(length => callback(length, !!length))
     }
-  },
+  })
+}
+
+const oninit = vnode => {
+  const state = vnode.state
+
+  state.vm = loadVM(vnode.attrs.type)
+  state.refresh = refresh
+  state.loadMore = loadMore
+}
+
+const oncreate = vnode => {
+  vnode.state.infiniteList = createInfiniteList(vnode.state)
+  vnode.state.infiniteList.attach(vnode.dom)
+}
+
+const NewestTopics =  {
+  oninit,
+  oncreate,
   view: vnode => {
-    const topic = vnode.attrs.topic
-    return(
-      <div className="app-topics-content">
-        <div className="app-topics-title">{topic.title}</div>
-        <div className="app-topics-meta">
-          <span>
-            <b className="app-topics-login">{topic.user.login}</b>
-            <em className="app-topics-node">{topic.node_name}</em>
-            {TileContent.renderCreatedOrReplied(topic)}
-          </span>
-          <span>{topic.replies_count + ' / ' + topic.hits}</span>
-        </div>
-      </div>
-    )
+    return <div className="app-topics app-topics--newest"></div>
   }
 }
 
-const Tile = {
+const JobTopics =  {
+  oninit,
+  oncreate,
   view: vnode => {
-    const topic = vnode.attrs.topic
-    return(
-      m(listTile, {
-        front: m(Avatar, {user: topic.user}),
-        content: m(TileContent, {topic: topic}),
-        ink: true,
-        url: {
-          href: '/topics/' + topic.id,
-          oncreate: m.route.link
-        }
-      })
-    )
+    return <div className="app-topics app-topics--job"></div>
   }
 }
 
-const List = {
-  generateTiles: (list) => {
-    return list.map(v => {
-      return m(Tile, {topic: v})
-    })
-  },
+const NodeTopics =  {
+  oninit,
+  oncreate,
   view: vnode => {
-    return(
-      m(list, {
-        class: 'app-topics',
-        tiles: List.generateTiles(vnode.attrs.list)
-      })
-    )
+    return <div className="app-topics app-topics--node"></div>
   }
 }
 
-export default List
+export {NewestTopics, JobTopics, NodeTopics}

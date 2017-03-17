@@ -17,4 +17,11 @@
       color: #999;
     }
   }
+
+  .app-topic_replies-reply {
+    border-bottom: solid 1px #eee;
+    .pe-list-tile__content--front {
+      align-self: inherit;
+    }
+  }
 }

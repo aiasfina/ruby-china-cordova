@@ -21,4 +21,6 @@ const local = (number, index) => {
 
 timeago.register('zh_CN', local)
 
-export default timeago()
+export default vnode => {
+  timeago().render(vnode.dom, 'zh_CN')
+}

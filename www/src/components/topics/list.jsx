@@ -20,21 +20,18 @@ const Avatar = {
 }
 
 const TileContent = {
-  renderTimeago: vnode => {
-    timeago.render(vnode.dom, 'zh_CN')
-  },
   renderCreatedOrReplied: topic => {
     if (topic.replied_at) {
       return(
         <span>
-          <time oncreate={TileContent.renderTimeago} datetime={topic.replied_at}></time>
+          <time oncreate={timeago} datetime={topic.replied_at}></time>
           回复
         </span>
       )
     } else {
       return(
         <span>
-          <time oncreate={TileContent.renderTimeago} datetime={topic.created_at}></time>
+          <time oncreate={timeago} datetime={topic.created_at}></time>
           发表
         </span>
       )

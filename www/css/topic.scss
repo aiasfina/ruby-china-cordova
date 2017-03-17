@@ -12,10 +12,14 @@
       padding: 20px;
       font-weight: bold;
     }
-
+    .app-topic_detail-meta {
+      padding: 0 20px 0 20px;
+      span {
+        margin-right: 15px;
+      }
+    }
     .app-topic_detail-content {
       padding: 20px;
-
       h1, h2 {
         font-size: inherit;
       }
@@ -23,7 +27,6 @@
         max-width: 100%;
       }
     }
-
     .app-topic_detail-menu {
       padding: 0;
       margin: 0;

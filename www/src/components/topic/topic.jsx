@@ -1,7 +1,7 @@
 import '../../../css/topic.scss'
 
 import m from 'mithril'
-import {toolbar, iconButton} from 'polythene'
+import {toolbar, iconButton, icon} from 'polythene'
 import iconArrowLeft from 'mmsvg/templarian/msvg/arrow-left'
 import iconEye from 'mmsvg/templarian/msvg/eye'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
@@ -77,12 +77,14 @@ const Menu = {
 const oninit = vnode => {
   vnode.state.meta = {}
   vnode.state.topic = {}
+  vnode.state.user = {}
 
   vnode.state.toolbar = m(Toolbar, {topic: vnode.state.topic})
 
   loadTopic(vnode.attrs.id)
   .then(resp => {
     vnode.state.topic = resp.topic
+    vnode.state.user = resp.topic.user
     vnode.state.meta = resp.meta
 
     // 由于polythene控件不能redraw，需要手动更新
@@ -92,6 +94,7 @@ const oninit = vnode => {
 
 const view = vnode => {
   const topic = vnode.state.topic
+  const user = vnode.state.user
   const meta = vnode.state.meta
 
   return(
@@ -101,6 +104,10 @@ const view = vnode => {
         <div className="app-topic_detail-screen flext-content">
           <div className="app-topic_detail-title">
             {topic.title}
+          </div>
+          <div className="app-topic_detail-meta">
+            <span>{m(icon, {type: 'medium', class: 'app-topic_detail-avatar avatar--circle', src: user.avatar_url})}</span>
+            <span><b>{user.login}</b></span>
           </div>
           <div className="app-topic_detail-content">
             {m.trust(topic.body_html)}

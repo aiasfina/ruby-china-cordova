@@ -7,6 +7,7 @@ import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import {loadTopic} from '../../controllers/topics'
 import HeaderPanel from '../share/headerPanel.jsx'
 import Menu from './menu.jsx'
+import timeago from '../share/timeago.js'
 
 const btnToBack = () => {
   window.history.back()
@@ -71,11 +72,12 @@ const view = vnode => {
       <div className="app-topic_detail flex-container column">
         <div className="app-topic_detail-screen flext-content">
           <div className="app-topic_detail-title">
-            {topic.title}
+            <h6>{topic.title}</h6>
           </div>
           <div className="app-topic_detail-meta">
             <span>{m(icon, {type: 'medium', class: 'app-topic_detail-avatar avatar--circle', src: user.avatar_url})}</span>
             <span><b>{user.login}</b></span>
+            <span><time oncreate={timeago} datetime={topic.created_at}></time></span>
           </div>
           <div className="app-topic_detail-content content--common">
             {m.trust(topic.body_html)}

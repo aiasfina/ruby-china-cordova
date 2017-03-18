@@ -9,13 +9,18 @@
   }
   .app-topic_detail {
     .app-topic_detail-title {
-      padding: 20px;
+      margin: 0 20px;
       font-weight: bold;
     }
     .app-topic_detail-meta {
-      padding: 0 20px 0 20px;
+      margin: 0 20px;
+      padding-bottom: 20px;
+      border-bottom: solid 1px #eee;
       span {
         margin-right: 15px;
+      }
+      time {
+        color: #999;
       }
     }
     .app-topic_detail-content {

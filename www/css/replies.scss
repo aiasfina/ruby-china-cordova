@@ -27,6 +27,12 @@
     border-bottom: solid 1px #eee;
     .pe-list-tile__content--front {
       align-self: inherit;
+      &.pe-list-tile__content {
+        width: 72px;
+      }
+    }
+    .pe-list-tile__primary, .pe-list-tile__content {
+      width: 100%;
     }
   }
 }

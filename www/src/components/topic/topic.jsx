@@ -9,6 +9,8 @@ import HeaderPanel from '../share/headerPanel.jsx'
 import Menu from './menu.jsx'
 import timeago from '../share/timeago.js'
 
+var lastResponse = {topic: {}, meta: {}}
+
 const btnToBack = () => {
   window.history.back()
 }
@@ -43,6 +45,15 @@ const Toolbar = {
   }
 }
 
+const setTopic = (vnode, resp) => {
+  vnode.state.topic = resp.topic
+  vnode.state.user = resp.topic.user
+  vnode.state.meta = resp.meta
+
+  // 由于polythene控件不能redraw，需要手动更新
+  vnode.state.toolbar.state.btns[1].dom.innerHTML = vnode.state.topic.title
+}
+
 const oninit = vnode => {
   vnode.state.meta = {}
   vnode.state.topic = {}
@@ -50,15 +61,16 @@ const oninit = vnode => {
 
   vnode.state.toolbar = m(Toolbar, {topic: vnode.state.topic})
 
-  loadTopic(vnode.attrs.id)
-  .then(resp => {
-    vnode.state.topic = resp.topic
-    vnode.state.user = resp.topic.user
-    vnode.state.meta = resp.meta
-
-    // 由于polythene控件不能redraw，需要手动更新
-    vnode.state.toolbar.state.btns[1].dom.innerHTML = vnode.state.topic.title
-  })
+  // 当与上次显示 topic 相同时，不再重新拉取
+  if (lastResponse.topic.id === vnode.attrs.id) {
+    setTopic(vnode, lastResponse)
+  } else {
+    loadTopic(vnode.attrs.id)
+    .then(resp => {
+      lastResponse = resp
+      setTopic(vnode, lastResponse)
+    })
+  }
 }
 
 const view = vnode => {

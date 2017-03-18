@@ -5,7 +5,7 @@ import {toolbar, iconButton, icon} from 'polythene'
 import iconArrowLeft from 'mmsvg/templarian/msvg/arrow-left'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import {loadTopic} from '../../controllers/topics'
-import HeaderPanel from '../share/headerPanel.jsx'
+import HeaderPanel from '../share/header_panel.jsx'
 import Menu from './menu.jsx'
 import timeago from '../share/timeago'
 

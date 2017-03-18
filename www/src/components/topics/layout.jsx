@@ -6,7 +6,7 @@ import iconMenu from 'mmsvg/google/msvg/navigation/menu'
 import iconSearch from 'mmsvg/google/msvg/action/search'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import iconPlus from 'mmsvg/templarian/msvg/plus'
-import HeaderPanel from '../share/headerPanel.jsx'
+import HeaderPanel from '../share/header_panel.jsx'
 
 // style
 iconButton.theme('.app-toolbar-ibtn', {

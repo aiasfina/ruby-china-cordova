@@ -6,7 +6,7 @@ import Scrollload from 'Scrollload'
 import iconArrowLeft from 'mmsvg/templarian/msvg/arrow-left'
 import ReplyItem from './item.jsx'
 import {loadList} from '../../controllers/replies'
-import HeaderPanel from '../share/headerPanel.jsx'
+import HeaderPanel from '../share/header_panel.jsx'
 
 const Toolbar = {
   iBtn: (msvg, cb) => {

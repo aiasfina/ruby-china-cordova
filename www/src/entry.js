@@ -2,7 +2,7 @@
 
 import m from 'mithril'
 
-import Layout from './components/share/layout.jsx'
+import Layout from './components/topics/layout.jsx'
 import {NewestTopics, JobTopics} from './components/topics/list.jsx'
 import TopicDetail from './components/topic/topic.jsx'
 import ReplyList from './components/reply/list.jsx'

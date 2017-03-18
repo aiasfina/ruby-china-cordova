@@ -1,13 +1,12 @@
 import '../../../css/layout.scss'
 
 import m from 'mithril'
-
-import {iconButton, tabs, toolbar} from 'polythene'
+import {iconButton, button, tabs, toolbar, fab} from 'polythene'
 import iconMenu from 'mmsvg/google/msvg/navigation/menu'
 import iconSearch from 'mmsvg/google/msvg/action/search'
 import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
-
-import HeaderPanel from './headerPanel.jsx'
+import iconPlus from 'mmsvg/templarian/msvg/plus'
+import HeaderPanel from '../share/headerPanel.jsx'
 
 // style
 iconButton.theme('.app-toolbar-ibtn', {
@@ -95,15 +94,39 @@ const Tab = {
   }
 }
 
-export default {
+const clickFab = vnode => {
+
+}
+
+const Fab = {
+  oninit: vnode => {
+    vnode.state.clickFab = clickFab
+  },
   view: vnode => {
-    return(
-      <main className="app-main">
-        {m(HeaderPanel, {toolbar: m(Toolbar), fixed: true}, m(Tab))}
-        <div className="app-content">
-          {vnode.children}
-        </div>
-      </main>
-    )
+    return m(fab, {
+      class: 'app-fab--fixed',
+      icon: {
+        msvg: iconPlus
+      },
+      events: {
+        onclick: vnode.state.clickFab
+      }
+    })
   }
+}
+
+const view = vnode => {
+  return(
+    <main className="app-main">
+      {m(HeaderPanel, {toolbar: m(Toolbar), fixed: true}, m(Tab))}
+      <div className="app-content">
+        {vnode.children}
+      </div>
+      {m(Fab)}
+    </main>
+  )
+}
+
+export default {
+  view
 }

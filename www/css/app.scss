@@ -40,6 +40,12 @@ time {
   }
 }
 
+.app-fab--fixed {
+  position: fixed !important;
+  right: 20px;
+  bottom: 20px;
+}
+
 .content--common {
   h1 {
     font-size: 32px;

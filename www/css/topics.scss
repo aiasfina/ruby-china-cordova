@@ -1,5 +1,10 @@
 .app-topics {
   height: 100%;
+  & > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
   .app-topics-item {
     border-bottom: solid 1px #eee;
   }

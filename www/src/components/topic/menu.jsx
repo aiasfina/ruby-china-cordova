@@ -23,10 +23,22 @@ const Menu = {
 
     return(
       <ul className="app-topic_detail-menu">
-        <li className={"app-topic_detail-menu-bookmark" + (meta.favorited ? ' active' : '')}>{Menu.iBtn(iconBookmark)}</li>
-        <li className={"app-topic_detail-menu-heart" + (meta.liked ? ' active' : '')}>{Menu.iBtn(iconHeart)}</li>
-        <li className="app-topic_detail-menu-eye">{Menu.iBtn(iconEye)}</li>
-        <li className="app-topic_detail-menu-comment" onclick={() => {showReplies(topic)}}>{Menu.iBtn(iconComment)}</li>
+        <li className={"app-topic_detail-menu-bookmark" + (meta.favorited ? ' active' : '')}>
+          <p>{Menu.iBtn(iconBookmark)}</p>
+          <p>收藏</p>
+        </li>
+        <li className={"app-topic_detail-menu-heart" + (meta.liked ? ' active' : '')}>
+          <p>{Menu.iBtn(iconHeart)}</p>
+          <p>喜欢</p>
+        </li>
+        <li className="app-topic_detail-menu-eye">
+          <p>{Menu.iBtn(iconEye)}</p>
+          <p>关注</p>
+        </li>
+        <li className="app-topic_detail-menu-comment" onclick={() => {showReplies(topic)}}>
+          <p>{Menu.iBtn(iconComment)}</p>
+          <p>回复</p>
+        </li>
       </ul>
     )
   }

@@ -33,8 +33,18 @@
       flex-direction: row;
       justify-content: space-around;
       li {
-        a {
+        margin: 5px 0;
+        p {
+          margin: 0;
+          text-align: center;
           color: #bbb;
+          font-size: 12px;
+          a {
+            color: #bbb;
+          }
+        }
+        .pe-button.pe-icon-button .pe-icon-button__content {
+          padding: 2px;
         }
         &.app-topic_detail-menu-bookmark, &.app-topic_detail-menu-comment, &.app-topic_detail-menu-eye {
           &.active a {

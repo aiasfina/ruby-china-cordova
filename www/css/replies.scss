@@ -1,6 +1,11 @@
 .app-topic_replies {
   height: 100%;
 
+  & > ul {
+    padding: 0;
+    margin: 0;
+  }
+
   .app-toolbar {
     span.flex {
       margin-left: 0;

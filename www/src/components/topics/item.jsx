@@ -8,7 +8,7 @@ const Avatar = {
 
     return(
       m(icon, {
-        type: 'medium',
+        type: 'large',
         class: 'app-topics-avatar avatar--circle',
         src: user.avatar_url
       })

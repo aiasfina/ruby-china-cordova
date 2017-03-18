@@ -1,10 +1,16 @@
 html, body {
   height: 100%;
   margin: 0;
+  color: #1c2535;
 }
 
 * {
   box-sizing: border-box;
+}
+
+time {
+  color: #aaa;
+  font-size: 12px;
 }
 
 .flex-container {
@@ -35,8 +41,17 @@ html, body {
 }
 
 .content--common {
-  h1, h2 {
-    font-size: inherit;
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4, h5, h6 {
+    font-size: 16px;
   }
   img {
     width: 100%;
@@ -45,8 +60,27 @@ html, body {
       max-height: 1rem;
     }
   }
+  a {
+    color: #1976d2;
+  }
+  ul {
+    padding-left: 25px;
+    li {
+      margin: 10px 0;
+    }
+  }
   pre {
     overflow-x: auto;
+    background-color: #f7f7f7;
+    border: solid 1px #bbb;
+    font-size: 12px;
+    padding: 15px;
+  }
+  blockquote {
+    background-color: #eee;
+    padding: 10px;
+    margin: 20px;
+    color: #898989;
   }
 }
 

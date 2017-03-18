@@ -7,7 +7,7 @@ import iconMore from 'mmsvg/google/msvg/navigation/more-vert'
 import {loadTopic} from '../../controllers/topics'
 import HeaderPanel from '../share/headerPanel.jsx'
 import Menu from './menu.jsx'
-import timeago from '../share/timeago.js'
+import timeago from '../share/timeago'
 
 var lastResponse = {topic: {}, meta: {}}
 
@@ -89,7 +89,7 @@ const view = vnode => {
           <div className="app-topic_detail-meta">
             <span>{m(icon, {type: 'medium', class: 'app-topic_detail-avatar avatar--circle', src: user.avatar_url})}</span>
             <span><b>{user.login}</b></span>
-            <span><time oncreate={timeago} datetime={topic.created_at}></time></span>
+            <span><time onupdate={timeago} datetime={topic.created_at}></time></span>
           </div>
           <div className="app-topic_detail-content content--common">
             {m.trust(topic.body_html)}

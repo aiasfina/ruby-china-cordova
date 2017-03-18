@@ -62,9 +62,14 @@ const view = vnode => {
       ink: true,
       front: m(Avatar, {user: user}),
       content: m(TileContent, {topic: topic}),
-      url: {
-        href: '/topics/' + topic.id,
-        oncreate: m.route.link
+      events: {
+        onclick: () => {
+          /**  TODO: https://github.com/roeierez/infinite-list/commit/19da908af77025381c3209c6cdef4b5515786ddf
+            *  由于 infinite-list 作者只修复了bug但没有更新版本号，所以请在 npm install 之后参照改动自行修复。
+            *  之后有原生js实现的插件会把这坑货换掉的。 ╮(￣▽￣)╭
+           **/
+          m.route.set('/topics/' + topic.id)
+        }
       }
     })
   )

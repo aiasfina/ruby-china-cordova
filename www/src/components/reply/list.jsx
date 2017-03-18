@@ -102,8 +102,14 @@ const view = vnode => {
   )
 }
 
+const onremove = vnode => {
+  vm.offset = 0
+  vm.list = []
+}
+
 export default {
   oninit,
   oncreate,
-  view
+  view,
+  onremove
 }

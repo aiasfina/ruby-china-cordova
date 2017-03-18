@@ -37,12 +37,6 @@ const Toolbar = {
   }
 }
 
-const vm = {
-  offset: 0,
-  list: [],
-  loadList: loadList
-}
-
 const loadMore = vm => {
   return vm.loadList(vm.topicId, vm.offset)
   .then(resp => {
@@ -78,8 +72,12 @@ const createInfiniteList = (vnode) => {
 const oninit = vnode => {
   const state = vnode.state
 
-  vm.topicId = vnode.attrs.topicId
-  state.vm = vm
+  state.vm = {
+    topicId: vnode.attrs.topicId,
+    offset: 0,
+    list: [],
+    loadList: loadList
+  }
   state.loadMore = loadMore
 }
 
@@ -102,14 +100,8 @@ const view = vnode => {
   )
 }
 
-const onremove = vnode => {
-  vm.offset = 0
-  vm.list = []
-}
-
 export default {
   oninit,
   oncreate,
-  view,
-  onremove
+  view
 }

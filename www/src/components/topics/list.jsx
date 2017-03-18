@@ -64,7 +64,10 @@ const createInfiniteList = (vnode) => {
     },
     enablePullRefresh: true,
     pullRefresh: sl => {
-      refresh(vm).then(() => sl.refreshComplete())
+      refresh(vm).then(() => {
+        sl.refreshComplete()
+        sl.hasMoreData = true
+      })
     }
   })
 }

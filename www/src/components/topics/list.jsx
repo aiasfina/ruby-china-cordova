@@ -5,7 +5,6 @@ import Scrollload from 'Scrollload'
 import {fab, icon} from 'polythene'
 import {loadTopicList, loadNodeList, loadJobList} from '../../controllers/topics'
 import TopicItem from './item.jsx'
-import Spinner from '../share/spinner.jsx'
 
 const vm = {
   newest: {

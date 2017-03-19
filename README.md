@@ -4,6 +4,6 @@
 
 ### Screenshots
 
-[](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/1.png?raw=true)
-[](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/2.png?raw=true)
-[](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/3.png?raw=true)
+![](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/1.png?raw=true)
+![](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/2.png?raw=true)
+![](https://github.com/aiasfina/ruby-china-cordova/blob/master/screenshots/3.png?raw=true)
